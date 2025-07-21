@@ -58,7 +58,7 @@ const Homepage = () => {
           ) : (
             <div>
                 
-                {!events ? <NoData></NoData> : <Table events={events}></Table>}</div>
+                {!events ? <NoData></NoData> : <Table setLoading={setLoading} events={events}></Table>}</div>
           )}
         </div>
       </div>

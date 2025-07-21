@@ -2,10 +2,10 @@ import type { TEvent } from "../../Interface/EventInferface";
 import TableContents from "./TableContents";
 
 
-const Table = ({events} : {events : TEvent[]}) => {
+const Table = ({events, setLoading} : {events : TEvent[], setLoading : React.Dispatch<React.SetStateAction<boolean>>}) => {
     return (
         <div>
-            <TableContents events = {events}></TableContents>
+            <TableContents setLoading={setLoading} events = {events}></TableContents>
         </div>
     );
 };

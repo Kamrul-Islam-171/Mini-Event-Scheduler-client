@@ -47,7 +47,7 @@ const EventModal = ({ isOpen, onClose, setLoading, loading, category = "Work" }:
       const res = await axios.post(`${baseUrl}/events`,eventData );
       // console.log(res?.data?.data);
       toast.success('Event Added')
-      setLoading(false)
+      // setLoading(false)
     } catch (error:any) {
       toast.error(error?.message);
       setLoading(false)
