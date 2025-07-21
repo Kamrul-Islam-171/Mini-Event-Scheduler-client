@@ -27,13 +27,6 @@ const EventModal = ({ isOpen, onClose, setLoading, loading, category = "Work" }:
 
   const onSubmit: SubmitHandler<FieldValues> = async(data) => {
     // console.log("Form Data:", data);
-    // const d = format(data.date, 'MM/dd/yyyy');
-    // console.log(d)
-    // const hour = data.time.split(':')[0];
-    // const min = data.time.split(':')[1];
-    // const newDate = new Date();
-    // newDate.setHours(hour, min, 0);
-    // const t = format(newDate, 'h:mm a')
 
     try {
       setLoading(true)

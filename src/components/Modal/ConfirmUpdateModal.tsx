@@ -11,8 +11,8 @@ const ConfirmConfirmModal = ({ isOpen, message = "Are you sure?", onConfirm, onC
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 modal-bg bg-opacity-40 flex items-center justify-center z-50">
-      <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-md">
+    <div className="fixed inset-0 modal-bg bg-opacity-40 flex items-center justify-center z-50 ">
+      <div className="bg-white p-6 rounded-lg shadow-xl w-[90%] max-w-md">
         <h2 className="text-lg font-semibold text-[var(--primary-color)] mb-4">{message}</h2>
         <div className="flex justify-end gap-4">
           <button
