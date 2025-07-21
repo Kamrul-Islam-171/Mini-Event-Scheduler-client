@@ -1,14 +1,21 @@
 import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
 import "./modal.css";
+// import { format } from "date-fns";
+import toast from "react-hot-toast";
+import { BiLoaderCircle } from "react-icons/bi";
+
+import axios from 'axios'
 
 
 interface EventModalProps {
   isOpen: boolean;
+  loading:boolean;
   onClose: () => void;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   category?: "Work" | "Personal" | "Other";
 }
 
-const EventModal = ({ isOpen, onClose, category = "Work" }: EventModalProps) => {
+const EventModal = ({ isOpen, onClose, setLoading, loading, category = "Work" }: EventModalProps) => {
   const {
     register,
     handleSubmit,
@@ -16,10 +23,35 @@ const EventModal = ({ isOpen, onClose, category = "Work" }: EventModalProps) => 
     formState: { errors },
   } = useForm();
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = async(data) => {
     console.log("Form Data:", data);
-    onClose(); 
-    reset()
+    // const d = format(data.date, 'MM/dd/yyyy');
+    // console.log(d)
+    // const hour = data.time.split(':')[0];
+    // const min = data.time.split(':')[1];
+    // const newDate = new Date();
+    // newDate.setHours(hour, min, 0);
+    // const t = format(newDate, 'h:mm a')
+
+    try {
+      setLoading(true)
+      const eventData = {
+        title: data?.title,
+        date: data?.date,
+        time:data?.time,
+        notes: data?.notes
+      }
+      const res = await axios.post(`http://localhost:5000/api/events`,eventData );
+      // console.log(res?.data?.data);
+      toast.success('Event Added')
+      setLoading(false)
+    } catch (error:any) {
+      toast.error(error?.message);
+      setLoading(false)
+    }
+   
+    // onClose(); 
+    // reset()
   };
 
   if (!isOpen) return null;
@@ -111,7 +143,7 @@ const EventModal = ({ isOpen, onClose, category = "Work" }: EventModalProps) => 
               type="submit"
               className="bg-white cursor-pointer text-[var(--primary-color)] font-bold px-5 py-2 rounded-lg hover:bg-gray-100"
             >
-              Save
+              {loading ? <BiLoaderCircle className="animate-spin text-xl" />: "Save"}
             </button>
           </div>
         </form>

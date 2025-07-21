@@ -7,6 +7,7 @@ import { useState } from "react";
 
 const Homepage = () => {
     const [open, setOpen] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const handleAddEvent = () => {
         
@@ -17,7 +18,7 @@ const Homepage = () => {
                 <h1 className="text-5xl font-semibold text-center my-10 text-[var(--primary-color)]">Mini Event Scheduler</h1>
                 <div className="flex justify-end">
                     <button onClick={() => setOpen(true)} className="button" >Add Event</button>
-                    <EventModal isOpen={open} onClose={() => setOpen(false)} category="Personal" />
+                    <EventModal isOpen={open} setLoading={setLoading} loading={loading} onClose={() => setOpen(false)} category="Personal" />
                 </div>
                 <div>
                     {/* table content */}
