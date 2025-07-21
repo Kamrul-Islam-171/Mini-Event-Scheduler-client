@@ -1,9 +1,10 @@
+import TableContents from "./TableContents";
 
 
 const Table = () => {
     return (
         <div>
-            Table
+            <TableContents></TableContents>
         </div>
     );
 };
