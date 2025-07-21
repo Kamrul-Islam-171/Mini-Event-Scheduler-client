@@ -124,14 +124,14 @@ const EventModal = ({ isOpen, onClose, setLoading, loading, category = "Work" }:
           </div>
 
           {/* Category (readonly/display-only) */}
-          <div>
+          {/* <div>
             <label className="block text-sm mb-1">Category</label>
             <input
               value={category}
               readOnly
               className="w-full px-3 py-2 rounded-lg text-gray-600 bg-gray-100 cursor-not-allowed"
             />
-          </div>
+          </div> */}
 
           {/* Submit Button */}
           <div className="pt-4">
