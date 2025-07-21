@@ -1,10 +1,11 @@
+import type { TEvent } from "../../Interface/EventInferface";
 import TableContents from "./TableContents";
 
 
-const Table = () => {
+const Table = ({events} : {events : TEvent[]}) => {
     return (
         <div>
-            <TableContents></TableContents>
+            <TableContents events = {events}></TableContents>
         </div>
     );
 };

@@ -6,7 +6,7 @@ import { BiLoaderCircle } from "react-icons/bi";
 
 import axios from 'axios'
 
-
+const baseUrl = import.meta.env.VITE_API_URL;
 interface EventModalProps {
   isOpen: boolean;
   loading:boolean;
@@ -23,8 +23,10 @@ const EventModal = ({ isOpen, onClose, setLoading, loading, category = "Work" }:
     formState: { errors },
   } = useForm();
 
+  
+
   const onSubmit: SubmitHandler<FieldValues> = async(data) => {
-    console.log("Form Data:", data);
+    // console.log("Form Data:", data);
     // const d = format(data.date, 'MM/dd/yyyy');
     // console.log(d)
     // const hour = data.time.split(':')[0];
@@ -41,7 +43,8 @@ const EventModal = ({ isOpen, onClose, setLoading, loading, category = "Work" }:
         time:data?.time,
         notes: data?.notes
       }
-      const res = await axios.post(`http://localhost:5000/api/events`,eventData );
+      // ${import.meta.env.BACKEND_URL}
+      const res = await axios.post(`${baseUrl}/events`,eventData );
       // console.log(res?.data?.data);
       toast.success('Event Added')
       setLoading(false)
@@ -50,8 +53,8 @@ const EventModal = ({ isOpen, onClose, setLoading, loading, category = "Work" }:
       setLoading(false)
     }
    
-    // onClose(); 
-    // reset()
+    onClose(); 
+    reset()
   };
 
   if (!isOpen) return null;
