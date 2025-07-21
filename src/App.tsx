@@ -5,9 +5,9 @@ function App() {
   
 
   return (
-    <>
-    <Homepage></Homepage>
-    </>
+    <div className="">
+    <Homepage ></Homepage>
+    </div>
   )
 }
 

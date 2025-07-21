@@ -35,11 +35,11 @@ const Homepage = () => {
   return (
     <div className="max-w-[1440px] m-auto lg:p-20 md:p-16 p-6">
       <div>
-        <h1 className="text-5xl font-semibold text-center my-10 text-[var(--primary-color)]">
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-center my-10 text-[var(--primary-color)]">
           Mini Event Scheduler
         </h1>
         <div className="flex justify-end">
-          <button onClick={() => setOpen(true)} className="button">
+          <button onClick={() => setOpen(true)} className="button ">
             Add Event
           </button>
           <EventModal
@@ -51,7 +51,7 @@ const Homepage = () => {
           />
         </div>
         <div>
-            <h2 className=" mt-10 text-3xl text-[var(--primary-color)] font-medium bg-[var(--third-color)] py-4 px-5 rounded-xl">My Events</h2>
+            <h2 className=" mt-10 text-2xl lg:text-3xl text-[var(--primary-color)] font-medium bg-[var(--third-color)] py-4 px-5 rounded-xl">My Events</h2>
           {/* table content */}
           {loading ? (
             <Loading></Loading>
