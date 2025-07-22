@@ -42,12 +42,13 @@ const Homepage = () => {
   const [loading, setLoading] = useState(true);
   const [events, setEvents] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
-
+  
   const handleChange = (selectedOption: any) => {
     setSelectedCategory(selectedOption?.value || "");
     setLoading(true);
   };
-
+  console.log(baseUrl)
+  
   const getEvents = async () => {
     try {
       const res = await axios.get(
@@ -64,7 +65,7 @@ const Homepage = () => {
 
   useEffect(() => {
     getEvents();
-  }, [loading, selectedCategory]);
+  }, [loading,selectedCategory]);
 
   return (
     <div className="max-w-[1440px] m-auto lg:p-20 md:p-16 p-6">

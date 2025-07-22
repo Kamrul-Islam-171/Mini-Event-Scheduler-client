@@ -55,6 +55,7 @@ const TableContents = ({
   const handleUpdate = async () => {
     try {
       setLoading(true);
+      
       const res = await axios.put(`${baseUrl}/events/${updateId}`);
       toast.success(res?.data?.message);
     } catch (error: any) {

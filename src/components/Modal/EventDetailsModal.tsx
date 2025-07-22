@@ -26,7 +26,7 @@ const EventDetailsModal: React.FC<Props> = ({ isOpen, onClose, eventId }) => {
       try {
         const res = await axios.get(`${baseUrl}/events/${eventId}`);
         setEvent(res?.data?.data);
-        console.log(res?.data?.data)
+        // console.log(res?.data?.data)
       } catch (err: any) {
         console.error("Error fetching event:", err.message);
       } finally {

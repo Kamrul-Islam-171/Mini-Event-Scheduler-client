@@ -4,18 +4,23 @@ import "./modal.css";
 import toast from "react-hot-toast";
 import { BiLoaderCircle } from "react-icons/bi";
 
-import axios from 'axios'
+import axios from "axios";
 
 const baseUrl = import.meta.env.VITE_API_URL;
 interface EventModalProps {
   isOpen: boolean;
-  loading:boolean;
+  loading: boolean;
   onClose: () => void;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   category?: "Work" | "Personal" | "Other";
 }
 
-const EventModal = ({ isOpen, onClose, setLoading, loading }: EventModalProps) => {
+const EventModal = ({
+  isOpen,
+  onClose,
+  setLoading,
+  loading,
+}: EventModalProps) => {
   const {
     register,
     handleSubmit,
@@ -23,31 +28,34 @@ const EventModal = ({ isOpen, onClose, setLoading, loading }: EventModalProps) =
     formState: { errors },
   } = useForm();
 
-  
-
-  const onSubmit: SubmitHandler<FieldValues> = async(data) => {
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     // console.log("Form Data:", data);
 
     try {
-      setLoading(true)
+      setLoading(true);
       const eventData = {
         title: data?.title,
         date: data?.date,
-        time:data?.time,
-        notes: data?.notes
-      }
+        time: data?.time,
+        notes: data?.notes,
+      };
       // ${import.meta.env.BACKEND_URL}
-      const res = await axios.post(`${baseUrl}/events`,eventData );
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      const res = await axios.post(`${baseUrl}/events`, eventData, config);
       console.log("new = ", res?.data?.data);
-      toast.success('Event Added')
+      toast.success("Event Added");
       // setLoading(false)
-    } catch (error:any) {
+    } catch (error: any) {
       toast.error(error?.message);
-      setLoading(false)
+      setLoading(false);
     }
-   
-    onClose(); 
-    reset()
+
+    onClose();
+    reset();
   };
 
   if (!isOpen) return null;
@@ -123,14 +131,17 @@ const EventModal = ({ isOpen, onClose, setLoading, loading }: EventModalProps) =
             />
           </div>
 
-
           {/* Submit Button */}
           <div className="pt-4">
             <button
               type="submit"
               className="bg-white cursor-pointer text-[var(--primary-color)] font-bold px-5 py-2 rounded-lg hover:bg-gray-100"
             >
-              {loading ? <BiLoaderCircle className="animate-spin text-xl" />: "Save"}
+              {loading ? (
+                <BiLoaderCircle className="animate-spin text-xl" />
+              ) : (
+                "Save"
+              )}
             </button>
           </div>
         </form>
