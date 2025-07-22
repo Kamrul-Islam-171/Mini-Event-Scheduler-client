@@ -15,7 +15,7 @@ interface EventModalProps {
   category?: "Work" | "Personal" | "Other";
 }
 
-const EventModal = ({ isOpen, onClose, setLoading, loading, category = "Work" }: EventModalProps) => {
+const EventModal = ({ isOpen, onClose, setLoading, loading }: EventModalProps) => {
   const {
     register,
     handleSubmit,
@@ -38,7 +38,7 @@ const EventModal = ({ isOpen, onClose, setLoading, loading, category = "Work" }:
       }
       // ${import.meta.env.BACKEND_URL}
       const res = await axios.post(`${baseUrl}/events`,eventData );
-      // console.log(res?.data?.data);
+      console.log("new = ", res?.data?.data);
       toast.success('Event Added')
       // setLoading(false)
     } catch (error:any) {
@@ -123,15 +123,6 @@ const EventModal = ({ isOpen, onClose, setLoading, loading, category = "Work" }:
             />
           </div>
 
-          {/* Category (readonly/display-only) */}
-          {/* <div>
-            <label className="block text-sm mb-1">Category</label>
-            <input
-              value={category}
-              readOnly
-              className="w-full px-3 py-2 rounded-lg text-gray-600 bg-gray-100 cursor-not-allowed"
-            />
-          </div> */}
 
           {/* Submit Button */}
           <div className="pt-4">
